@@ -10,10 +10,6 @@ module.exports = {
     devtool: "source-map",
     context: srcPath,
     entry: ["babel-polyfill", "./app.js"],
-    // devServer: {
-    //     // 配置直接输入网址无法访问
-    //     historyApiFallback: true
-    // },
     output: {
         path: outputPath,
         filename: "bundle.js"
@@ -38,11 +34,10 @@ module.exports = {
                     "style-loader",
                     { loader: "css-loader", options: { importLoaders: 1 } },
                     "less-loader"
-                    // "postcss-loader",
                 ]
             },
             {
-                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                test: /\.(png|jpe?g|gif|svg|ttf|woff2?|eot)(\?.*)?$/,
                 use: [
                     {
                         loader: "url-loader",
@@ -61,7 +56,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
-            title: "Share Books",
+            title: "react-mobx-router3-webpack3-template",
             template: "index.ejs",
             inject: "body",
             hash: true
