@@ -1,8 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const srcPath = path.join(__dirname, "../src");
 const outputPath = path.join(__dirname, "../dist");
@@ -36,7 +37,7 @@ module.exports = {
                     fallback: "style-loader",
                     use: [{loader: "css-loader", options: {importLoaders: 2, minimize: true}},
                     {loader: "postcss-loader", options: {
-                        sourceMap: true,
+                        sourceMap: false,
                         config: {
                             path: "postcss.config.js"
                         }
@@ -66,6 +67,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin('dist', {
+            root: path.resolve(__dirname, '../'),
+            verbose: true
+        }),
         new ExtractTextPlugin('[name].[chunkhash:8].css'),// css js分离插件
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
