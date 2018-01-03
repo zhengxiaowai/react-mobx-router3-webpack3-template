@@ -1,28 +1,49 @@
-import ReactDOM from "react-dom";
-import React from "react";
-import { Router, Route, IndexRoute, hashHistory } from "react-router";
-import { useStrict } from "mobx";
-import { Provider } from "mobx-react";
-
+import ReactDOM from 'react-dom'
+import React from 'react'
+import {
+  HashRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import { useStrict } from 'mobx'
+import { Provider } from 'mobx-react'
+import Loadable from 'react-loadable'
 // components
-import App from './components/App'
+import App from './pages/App'
+const Login = Loadable({
+  loader: () => import('./pages/Login.js'),
+  loading: () => {
+    return (
+      <h1>Loading...</h1>
+    )
+  }
+})
 
-
-//stores
-
+// stores
 
 // combine stores
-const stores = {};
+const stores = {}
 
-window._____APP_STATE_____ = stores;
+window._____APP_STATE_____ = stores
 
-useStrict(true);
+useStrict(true)
 
 const Root = () =>
-<Provider {...stores}>
-    <Router history={hashHistory}>
-        <Route path="/" component={App}>
-            {/*<IndexRoute component={ListBooks} />
+  <Provider {...stores}>
+    <Router>
+      {/* <Route path="/" exact component={App}></Route> */}
+      <div>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/login">Login</Link></li>
+        </ul>
+        <div>
+          <Route path="/" exact component={App}></Route>
+          <Route path="/login" exact component={Login}></Route>
+        </div>
+      </div>
+      {/* <Route path="/" component={Login}></Route> */}
+      {/* <IndexRoute component={ListBooks} />
              <Route path="login" component={Login} />
             <Route path="register" component={Register} />
             <Route path="editor" component={Editor} />
@@ -31,8 +52,7 @@ const Root = () =>
             <Route path="settings" component={Settings} />
             <Route path="@:username" component={Profile} />
             <Route path="@:username/favorites" component={Profile} /> */}
-        </Route>
     </Router>
-</Provider>;
+  </Provider>
 
-ReactDOM.render(<Root />, document.getElementById("root"));
+ReactDOM.render(<Root />, document.getElementById('root'))
