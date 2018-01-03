@@ -2,12 +2,13 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const srcPath = path.join(__dirname, "../src");
 const outputPath = path.join(__dirname, "../dist");
 
 module.exports = {
-    devtool: "source-map",
+    devtool: false,
     context: srcPath,
     entry: ["babel-polyfill", "./app.js"],
     output: {
@@ -31,11 +32,17 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    "style-loader",
-                    {loader: "css-loader", options: {importLoaders: 1}},
-                    "sass-loader"
-                ]
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [{loader: "css-loader", options: {importLoaders: 2, minimize: true}},
+                    {loader: "postcss-loader", options: {
+                        sourceMap: true,
+                        config: {
+                            path: "postcss.config.js"
+                        }
+                    }},
+                    "sass-loader"]
+                })
             },
             {
                 test: /\.(less|css)$/,
@@ -59,6 +66,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new ExtractTextPlugin('[name].[chunkhash:8].css'),// css js分离插件
         new webpack.optimize.CommonsChunkPlugin({
             name: "commons",
             filename: "commons.js"
