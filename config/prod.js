@@ -12,7 +12,8 @@ module.exports = {
     entry: ["babel-polyfill", "./app.js"],
     output: {
         path: outputPath,
-        filename: "bundle.js"
+        filename: "bundle.js",
+        chunkFilename: '[name]-[id].[chunkhash:8].bundle.js'
     },
     stats: {
         colors: true

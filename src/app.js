@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Route,
     Link
   } from 'react-router-dom'
@@ -10,7 +10,7 @@ import { Provider } from "mobx-react";
 
 // components
 import App from './pages/App'
-import Login from './pages/Login'
+import Login from 'bundle-loader?lazy&name=app-[name]!./pages/Login'
 
 
 //stores

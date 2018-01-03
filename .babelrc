@@ -1,5 +1,9 @@
 {
-    "presets": ["env", "react", "stage-2"],
+    "presets": [["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      }
+    }], "react", "stage-2"],
     "plugins": [
         "transform-async-to-generator",
         "transform-decorators-legacy",
