@@ -51,6 +51,13 @@ module.exports = {
         use: [
           'style-loader',
           { loader: 'css-loader', options: { importLoaders: 1 } },
+          {loader: 'postcss-loader',
+            options: {
+              sourceMap: false,
+              config: {
+                path: 'postcss.config.js'
+              }
+            }},
           'less-loader'
         ]
       },
