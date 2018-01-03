@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import './app.scss'
 
 export default class App extends React.Component {
     render() {
         return (
-            <div className="app" id="app">
-                Hello World
-            </div>
+            <h1 className="app" id="app">
+                Hello World233
+            </h1>
         )
     }
 }
