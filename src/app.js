@@ -10,7 +10,7 @@ import { Provider } from 'mobx-react'
 
 // components
 import App from './pages/App'
-import Login from 'bundle-loader?lazy&name=app-[name]!./pages/Login'
+import Login from './pages/Login'
 
 // stores
 

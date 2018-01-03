@@ -22,11 +22,11 @@
         "react"
     ],
     "rules": {
+        "no-console": [1],
         "import/no-webpack-loader-syntax": 0,
         "no-empty": 0,
-        "comma-dangle": 0,
         "no-unused-vars": 0,
-        "no-console": 0,
+        "comma-dangle": 0,
         "no-const-assign": 2,
         "no-dupe-class-members": 2,
         "no-duplicate-case": 2,
