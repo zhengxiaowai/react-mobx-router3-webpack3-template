@@ -5,6 +5,7 @@
       }
     }], "react", "stage-2"],
     "plugins": [
+        "syntax-dynamic-import",
         "transform-async-to-generator",
         "transform-decorators-legacy",
         [

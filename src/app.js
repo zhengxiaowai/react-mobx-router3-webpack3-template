@@ -7,10 +7,17 @@ import {
 } from 'react-router-dom'
 import { useStrict } from 'mobx'
 import { Provider } from 'mobx-react'
-
+import Loadable from 'react-loadable'
 // components
 import App from './pages/App'
-import Login from './pages/Login'
+const Login = Loadable({
+  loader: () => import('./pages/Login.js'),
+  loading: () => {
+    return (
+      <h1>Loading...</h1>
+    )
+  }
+})
 
 // stores
 
